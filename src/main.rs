@@ -1,13 +1,11 @@
 fn main(){
-    let couter = 5;
-    printer(&couter);
-}
+    let mut counter = 10;
+    let msg = String::from("Liftoff!!!!!");
 
-fn printer(a: & i32){ 
-    let mut x = 0;
-    loop{
-        println!("{}", x);
-        x += 1;
-        if x > *a { break; }
+    while counter >= 0 {
+        println!("{}", counter);
+        if counter == 0 { println!("{}", msg); }
+        counter -= 1;
     }
 }
+
