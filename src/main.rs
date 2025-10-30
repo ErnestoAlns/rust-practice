@@ -1,12 +1,20 @@
+//    Usa match con rangos para imprimir:
+//    0–12 → "Niño"
+//    13–17 → "Adolescente"
+//    18–64 → "Adulto"
+//    65..=u8::MAX → "Adulto mayor"
+
+
 fn main(){
-    let number = 4;
+    let edad = 24;
+    let stat = match &edad {
+        0..=12 => "Niño",
+        13..=17 => "Adolescente",
+        18..=64 => "Adulto",
+        65..=100 => "Adulto mayor",
+        _ => "Error no valido",
+    };
 
-    let days = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"];
-
-    let res = days.get(number - 1);
-    match res {
-        Some(day) => println!("El dia es: {}", day),
-        None      => println!("Error..."),
-    }
+    println!("Tu edad es: {}, entonces eres un {}", edad, stat);
 }
 
