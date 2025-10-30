@@ -1,11 +1,12 @@
 fn main(){
-    let mut counter = 10;
-    let msg = String::from("Liftoff!!!!!");
+    let number = 4;
 
-    while counter >= 0 {
-        println!("{}", counter);
-        if counter == 0 { println!("{}", msg); }
-        counter -= 1;
+    let days = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"];
+
+    let res = days.get(number - 1);
+    match res {
+        Some(day) => println!("El dia es: {}", day),
+        None      => println!("Error..."),
     }
 }
 
