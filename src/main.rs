@@ -1,26 +1,46 @@
-use std::cmp::Ordering;
-
 fn main(){
-    let data = vec![1, 2, 5, 7, 8, 9, 10];
-    let target = 8;
-    let index = binary_search(&data, target);
-    match index{
-        Some(index) => {println!("Your target is {} in possition {}", target, index);}
-        None => {println!("Target not found");}
+
+}
+
+struct Product {
+    id: u32,
+    name: String,
+    price: u32,
+    stock: u32,
+}
+
+impl Product {
+    fn new_project(id: u32, name: &str, price: u32, stock:u32) -> Self {
+        Self {
+            id,
+            name: name.to_string(),
+            price, 
+            stock,
+        }
+    }
+
+    fn decs_stock(&mut self, units: u32) -> Option<u32>{
+        self.stock = self.stock.checked_sub(units)?;
+        Some(self.stock)
+    }
+
+    fn price_update(&mut self, new_price:u32) {
+        self.price = new_price;
     }
 }
 
-fn binary_search(data: &[i32], target: i32) -> Option<usize>{
-    let mut down: usize = 0;
-    let mut up: usize = data.len().checked_sub(1)?;
+enum Status {
+    Pendiente, 
+    Enviado,
+    Entregado,
+    Cancelado(String),
+}
 
-    while down <= up {
-        let mean: usize = down + (up - down) / 2;
-        match data[mean].cmp(&target){
-            Ordering::Less => { down = mean + 1; }
-            Ordering::Greater => { up = mean.checked_sub(1)?; }
-            Ordering::Equal => { return Some(mean); }
-        }
+fn show_status (pedido: Status){
+    match  pedido {
+        Status::Pendiente => println!("Pedido pendiente de enviar"),
+        Status::Enviado => println!("Pedido enviado"),
+        Status::Entregado => println!("Pedido entregado"),
+        Status::Cancelado(mov) => println!("Pedido cancelado por {}", mov),
     }
-    None
 }
